@@ -1,3 +1,4 @@
+#!/usr/bin/python3 
 '''
 ************************************************
 ** SIMULADOR BÁSICO DE UN PREDICTOR DE SALTOS **
