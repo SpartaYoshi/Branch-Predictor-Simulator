@@ -79,11 +79,9 @@ def main():
 
 			# Procesar
 			for salto in seq_saltos:
-				# Actualizar historial de registro (si hay BHR)
+				
 				if(bhr):
-					bhr.pop(0) # Shiftear a la izquierda y meter salto nuevo
-					bhr.append(salto)
-					# Concatenar el historial en un string binario, y pasar a int para determinar estado a comprobar en la tabla
+				#Concatenar el historial del registro BHR en un string binario, y pasar a int para determinar estado a comprobar en la tabla
 					bht_index = int(''.join([str(s) for s in bhr]), base=2)
 
 				# Realizar predicción
@@ -95,6 +93,12 @@ def main():
 				# Comparar si predicción es correcta
 				if pred is salto:
 					aciertos += 1
+
+				# Actualizar historial de registro (si hay BHR)
+				if(bhr):
+					bhr.pop(0) # Shiftear a la izquierda y meter salto nuevo
+					bhr.append(salto)
+
 
 				# Printear si verbose
 				if op_verbose: 
@@ -112,6 +116,8 @@ def main():
 					estado_actual[bht_index] -= 1
 				elif salto and estado_actual[bht_index] < estado_max:
 					estado_actual[bht_index] += 1
+				
+				
 				
 
 

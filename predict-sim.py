@@ -80,11 +80,8 @@ def main():
 
 			# Process branch sequence
 			for branch in branch_seq:
-				# Update register history (if BHR)
 				if(bhr):
-					bhr.pop(0) # Shift to left and insert recent branch
-					bhr.append(branch)
-					# Concatenate history onto binary string, convert to int to determine current state in BHT table
+					# Concatenate BHR register history onto binary string, convert to int to determine current state in BHT table
 					bht_index = int(''.join([str(s) for s in bhr]), base=2)
 
 				# Make prediction
@@ -96,6 +93,11 @@ def main():
 				# Compare if prediction is correct
 				if pred is branch:
 					hits += 1
+				
+				# Update register history (if BHR)
+				if(bhr):
+					bhr.pop(0) # Shift to left and insert recent branch
+					bhr.append(branch)
 
 				# Print if verbose
 				if op_verbose: 
